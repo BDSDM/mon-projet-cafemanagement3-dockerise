@@ -1,0 +1,110 @@
+/* HEADER */
+.header {
+  background: linear-gradient(to right, #ff9800, #ffa726);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  height: 70px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Titre */
+.title {
+  font-size: 40px;
+  font-weight: bold;
+  color: white;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Spacer */
+.spacer {
+  flex: 1;
+}
+
+/* Groupe de boutons */
+.button-group {
+  display: flex;
+  gap: 10px;
+}
+
+/* Boutons */
+.sign-button {
+  border-radius: 4px; /* Carré : bord légèrement arrondi pour un effet moderne */
+  padding: 8px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Effet relief */
+  border: none;
+  background-color: #e65100 !important; /* Orange très foncé */
+}
+
+.sign-button:hover {
+  transform: translateY(-2px); /* Légère élévation au survol */
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Ombre plus marquée */
+}
+
+/* CONTENU */
+.content {
+  text-align: center;
+  padding: 120px 20px 100px;
+  background: linear-gradient(to bottom right, #fafafa, #eeeeee);
+  min-height: calc(100vh - 140px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.content h1 {
+  font-size: 36px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.content p {
+  font-size: 20px;
+  color: #555;
+}
+
+/* FOOTER */
+.footer {
+  background: linear-gradient(to right, #388e3c, #4caf50);
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  height: 70px;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .title {
+    font-size: 28px;
+  }
+
+  .button-group {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+  }
+
+  .header {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 16px;
+  }
+}

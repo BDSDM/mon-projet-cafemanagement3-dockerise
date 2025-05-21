@@ -1,0 +1,50 @@
+<!-- HEADER -->
+<mat-toolbar class="header">
+  <span class="title">Cafe Management</span>
+  <span class="spacer"></span>
+  <button mat-raised-button class="sign-button" (click)="reload()">
+    Reload
+  </button>
+
+  <button mat-raised-button class="sign-button" (click)="logout()">
+    Logout
+  </button>
+</mat-toolbar>
+
+<!-- LAYOUT PRINCIPAL : Sidebar + Contenu -->
+<mat-sidenav-container class="sidenav-container">
+  <!-- SIDEBAR (Dashboard) -->
+  <mat-sidenav mode="side" class="sidebar" opened>
+    <h3 class="sidebar-title">
+      Bienvenue "{{ userName }}" dans Cookies game !
+    </h3>
+
+    <!-- Boutons sans puces -->
+    <div class="sidebar-button" (click)="goToDashboard()">Dashboard</div>
+    <div class="sidebar-button" (click)="goToToDoList()">My To Do List</div>
+    <div class="sidebar-button" (click)="goToUsersManagement()">
+      Gestion des utilisateurs
+    </div>
+    <div class="sidebar-button" (click)="goToProductsManagement()">
+      Products User Management
+    </div>
+    <div class="sidebar-button" (click)="goToBuyProduct()">Buy Product</div>
+  </mat-sidenav>
+  <div class="content" [style.background-color]="currentColor">
+    <!-- Sélecteur de couleur -->
+    <div [style.background-color]="currentColor" class="color-container">
+      <p>Choisissez une couleur de fond :</p>
+      <button
+        *ngFor="let color of colors"
+        [style.background-color]="color"
+        (click)="setColor(color)"
+      ></button>
+    </div>
+  </div>
+  <!-- CONTENU PRINCIPAL -->
+</mat-sidenav-container>
+
+<!-- FOOTER -->
+<mat-toolbar class="footer">
+  <span>&copy; 2024 Cafe Management - Tous droits réservés</span>
+</mat-toolbar>

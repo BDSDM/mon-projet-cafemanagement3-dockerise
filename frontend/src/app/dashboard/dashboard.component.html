@@ -1,0 +1,54 @@
+<!-- HEADER -->
+<mat-toolbar class="header">
+  <span class="title">Cafe Management</span>
+  <span class="spacer"></span>
+  <button mat-button class="sign-button" (click)="logOut()">Logout</button>
+</mat-toolbar>
+
+<!-- LAYOUT PRINCIPAL : Sidebar + Contenu -->
+<div class="main-layout">
+  <mat-sidenav-container class="sidenav-container">
+    <!-- SIDEBAR -->
+    <mat-sidenav mode="side" class="sidebar" opened>
+      <h3 class="sidebar-title">
+        Bienvenue "{{ username }}" dans le tableau de bord
+      </h3>
+      <div class="sidebar-list">
+        <button mat-button class="sidebar-button" (click)="goToToDoList()">
+          My To Do List
+        </button>
+        <button
+          mat-button
+          class="sidebar-button"
+          (click)="goToUsersManagement()"
+        >
+          Gestion des utilisateurs
+        </button>
+        <button mat-button class="sidebar-button" (click)="goToCookiesGame()">
+          Cookies Game
+        </button>
+        <button
+          mat-button
+          class="sidebar-button"
+          (click)="goToProductsManagement()"
+        >
+          Products User Management
+        </button>
+        <button mat-button class="sidebar-button" (click)="goToBuyProduct()">
+          Buy Product
+        </button>
+      </div>
+    </mat-sidenav>
+
+    <!-- CONTENU PRINCIPAL -->
+    <mat-sidenav-content class="content">
+      <h1>Bienvenue dans notre Café</h1>
+      <p>Dégustez les meilleurs cafés dans un cadre chaleureux et convivial.</p>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+
+<!-- FOOTER -->
+<mat-toolbar class="footer">
+  <span>&copy; 2024 Cafe Management - Tous droits réservés</span>
+</mat-toolbar>

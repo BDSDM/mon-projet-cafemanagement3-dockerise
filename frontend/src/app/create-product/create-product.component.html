@@ -1,0 +1,73 @@
+<mat-toolbar color="primary" style="position: relative">
+  <mat-toolbar-row fxLayout="row" fxLayoutAlign="start center">
+    <span style="margin-left: 33%">Create Product</span>
+    <button
+      mat-icon-button
+      mat-dialog-close
+      style="position: absolute; right: 0; top: 0"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="createProductForm">
+    <div fxFlex fxLayout="column" fxLayoutGap="16px">
+      <!-- Email Field -->
+      <mat-form-field appearance="outline" style="margin-right: 10px">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" required autocomplete="off" />
+        <mat-error
+          *ngIf="
+            createProductForm.controls.name.touched &&
+            createProductForm.controls.name.invalid
+          "
+        >
+          <span *ngIf="createProductForm.controls.name.errors?.required"
+            >This field is mandatory</span
+          >
+          <span *ngIf="createProductForm.controls.name.errors?.name"
+            >This field is invalid</span
+          >
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" style="margin-right: 10px">
+        <mat-label>Price</mat-label>
+        <input matInput formControlName="price" required autocomplete="off" />
+        <mat-error
+          *ngIf="
+            createProductForm.controls.price.touched &&
+            createProductForm.controls.price.invalid
+          "
+        >
+          <span *ngIf="createProductForm.controls.price.errors?.required"
+            >This field is mandatory</span
+          >
+          <span *ngIf="createProductForm.controls.price.errors?.price"
+            >This field is invalid</span
+          >
+        </mat-error>
+      </mat-form-field>
+
+      <div *ngIf="createProductError">
+        <mat-error>Identifiant ou mot de passe incorrect.</mat-error>
+      </div>
+    </div>
+    <mat-dialog-actions align="end">
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        (click)="handleSubmit()"
+        [disabled]="!(createProductForm.valid && createProductForm.dirty)"
+        style="margin-right: 10px"
+      >
+        <mat-icon>add</mat-icon> Create
+      </button>
+      <button mat-raised-button color="warn" mat-dialog-close>
+        <mat-icon>cancel</mat-icon> Close
+      </button>
+    </mat-dialog-actions>
+  </form>
+</mat-dialog-content>

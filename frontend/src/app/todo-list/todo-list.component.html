@@ -1,0 +1,118 @@
+<!-- HEADER -->
+<mat-toolbar class="header">
+  <span class="title">Cafe Management</span>
+  <span class="spacer"></span>
+
+  <button mat-raised-button class="sign-button" (click)="logout()">
+    Logout
+  </button>
+</mat-toolbar>
+
+<!-- LAYOUT PRINCIPAL : Sidebar + Contenu -->
+<mat-sidenav-container class="sidenav-container">
+  <!-- SIDEBAR -->
+  <mat-sidenav mode="side" class="sidebar" opened>
+    <h3 class="sidebar-title">
+      Bienvenue "{{ userName }}" dans ma To Do List !
+    </h3>
+
+    <div class="sidebar-button" (click)="goToDashboard()">Dashboard</div>
+    <div class="sidebar-button" (click)="goToUsersManagement()">
+      Gestion des utilisateurs
+    </div>
+    <div class="sidebar-button" (click)="goToCookiesGame()">Cookies Game</div>
+    <div class="sidebar-button" (click)="goToProductsManagement()">
+      Products User Management
+    </div>
+    <div class="sidebar-button" (click)="goToBuyProduct()">Buy Product</div>
+  </mat-sidenav>
+
+  <!-- CONTENU PRINCIPAL -->
+  <div class="content">
+    <div class="todo-container mat-elevation-z4">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title class="mat-headline">Liste des tâches</mat-card-title>
+          <mat-card-subtitle>Utilisateur: {{ userName }}</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+          <!-- NOUVELLE TÂCHE -->
+          <div class="new-task-container">
+            <mat-form-field appearance="outline" class="input-field">
+              <mat-label>Ajouter une nouvelle tâche</mat-label>
+              <input
+                matInput
+                [(ngModel)]="newTodoTitle"
+                name="newTodoTitle"
+                placeholder="Titre de la tâche"
+              />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="input-field">
+              <mat-label>Description de la tâche</mat-label>
+              <textarea
+                matInput
+                [(ngModel)]="newTodoDescription"
+                name="newTodoDescription"
+                placeholder="Description de la tâche"
+              ></textarea>
+            </mat-form-field>
+
+            <mat-checkbox [(ngModel)]="newTodoCompleted"
+              >Tâche complétée ?</mat-checkbox
+            >
+
+            <button
+              mat-raised-button
+              color="primary"
+              (click)="addTodo()"
+              [disabled]="!newTodoTitle.trim() || !newTodoDescription.trim()"
+            >
+              <mat-icon class="primary">add</mat-icon> Add
+            </button>
+          </div>
+
+          <!-- LISTE DES TÂCHES -->
+          <mat-list *ngIf="todos.length > 0">
+            <mat-list-item *ngFor="let todo of paginatedTodos">
+              <mat-checkbox [(ngModel)]="todo.completed">
+                {{ todo.title }} - <strong>{{ todo.description }}</strong>
+              </mat-checkbox>
+
+              <span *ngIf="todo.completed" class="completed-text"
+                >Complétée</span
+              >
+
+              <button
+                mat-icon-button
+                color="warn"
+                (click)="deleteTodo(todo.id)"
+              >
+                <mat-icon class="mat-warn">delete</mat-icon>
+              </button>
+            </mat-list-item>
+          </mat-list>
+
+          <!-- PAGINATEUR -->
+          <mat-paginator
+            [length]="todos.length"
+            [pageSize]="pageSize"
+            [pageSizeOptions]="[5, 10, 20]"
+            (page)="onPageChange($event)"
+          >
+          </mat-paginator>
+
+          <div *ngIf="todos.length === 0" class="no-tasks">
+            Aucune tâche à afficher.
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</mat-sidenav-container>
+
+<!-- FOOTER -->
+<mat-toolbar class="footer">
+  <span>&copy; 2024 Cafe Management - Tous droits réservés</span>
+</mat-toolbar>

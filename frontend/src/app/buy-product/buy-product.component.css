@@ -1,0 +1,209 @@
+/* HEADER */
+.header {
+  background-color: orange !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  height: 64px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Titre "Cafe Management" */
+.title {
+  font-size: 32px;
+  font-weight: bold;
+  color: blue;
+}
+
+/* LAYOUT PRINCIPAL */
+.sidenav-container {
+  display: flex;
+  margin-top: 64px;
+  height: calc(100vh - 128px); /* header + footer = 128px */
+  flex-direction: row;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 240px;
+  background-color: #263238;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Titre dans le sidebar */
+.sidebar-title {
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Boutons dans la sidebar */
+.sidebar-button {
+  background-color: #3f51b5 !important;
+  color: white !important;
+  text-align: center;
+  font-size: 16px;
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.sidebar-button:hover {
+  background-color: #5c6bc0 !important;
+  transform: scale(1.05);
+}
+
+/* CONTENU PRINCIPAL */
+.content {
+  flex: 1;
+  padding: 24px;
+  background-color: #f5f5f5;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+/* Wrapper pour les deux tables */
+.tables-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 40px;
+  width: 100%;
+}
+
+/* Container des tables */
+.table-container,
+.table-containerorder {
+  flex: 1;
+  max-width: 600px;
+  background: white;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+}
+
+/* Table */
+table.mat-elevation-z8 {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table.mat-elevation-z8 th,
+table.mat-elevation-z8 td {
+  text-align: center;
+}
+
+/* Sélecteur de couleur */
+.color-container {
+  padding: 20px;
+  border: 2px solid #ccc;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: white;
+}
+
+.color-container button {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  margin: 5px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease;
+}
+
+.color-container button:hover {
+  transform: scale(1.2);
+}
+
+/* FOOTER */
+.footer {
+  background-color: green !important;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  height: 64px;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Spacer */
+.spacer {
+  flex: 1;
+}
+
+/* Boutons Sign in / Sign up */
+.sign-button {
+  border-radius: 6px;
+  padding: 8px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: none;
+  background-color: #e65100 !important;
+  margin-right: 10px;
+  color: white;
+}
+
+.sign-button:hover {
+  background-color: #bf360c !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 14px rgba(0, 0, 0, 0.4);
+}
+
+/* Responsive */
+@media screen and (max-width: 1024px) {
+  .tables-wrapper {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .sidebar {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .sidenav-container {
+    flex-direction: column;
+  }
+
+  .content {
+    margin-top: 20px;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 20px;
+  }
+}
