@@ -22,7 +22,7 @@ services:
       start_period: 5s
 
   backend:
-    build: ./backend
+    image: bdsdmiii/mon-backend:latest
     container_name: backend
     depends_on:
       mysql:
@@ -37,7 +37,61 @@ services:
       - app-network
 
   frontend:
-    build: ./frontend
+    image: bdsdmiii/mon-frontend:latest
+    container_name: frontend
+    depends_on:
+      - backend
+    ports:
+      - "4200:80"
+    networks:
+      - app-network
+
+volumes:
+  mysql_data:
+
+networks:
+  app-network:
+    driver: bridge
+version: "3.8"
+
+services:
+  mysql:
+    image: mysql:8
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: databasecafemanagement3
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+
+  backend:
+    image: bdsdmiii/mon-backend:latest
+    container_name: backend
+    depends_on:
+      mysql:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/databasecafemanagement3
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+    networks:
+      - app-network
+
+  frontend:
+    image: bdsdmiii/mon-frontend:latest
     container_name: frontend
     depends_on:
       - backend
